@@ -26,7 +26,7 @@ hs_err_pid*
 .DS_Store
 **/.DS_Store
 
-DPSS/.idea
+CORBA/.idea
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -34,13 +34,13 @@ DPSS/.idea
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/*.iml
 
-# .idea/*.iml
 # .idea/modules
 # *.iml
 # *.ipr
 
-DPSS/DPSS.iml
+CORBA/DPSS-CORBA.iml
 
 .classpath
 .project
