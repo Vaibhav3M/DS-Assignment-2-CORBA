@@ -1,0 +1,21 @@
+module DPSS_CORBA
+{
+
+    interface GameServer {
+
+        string createPlayerAccount(in player player);
+
+        string playerSignIn (in string Username, in string Password, in string IPAddress);
+
+        string playerSignOut (in string Username, in string IPAddress);
+
+        string getPlayerStatus (in string AdminUsername, in string AdminPassword, in string IPAddress, in boolean checkOtherServers);
+
+        string transferAccount (in string Username, in string Password, in string OldIPAddress, in string NewIPAddress);
+
+        string suspendAccount (in string AdminUsername, in string AdminPassword, in string AdminIP, in string UsernameToSuspend);
+
+     };
+
+};
+
