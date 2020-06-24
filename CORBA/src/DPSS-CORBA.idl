@@ -3,7 +3,7 @@ module DPSS_CORBA
 
     interface GameServer {
 
-        string createPlayerAccount(in player player);
+        string createPlayerAccount (in string FirstName, in string LastName, in float Age, in string Username, in string Password, in string IPAddress);
 
         string playerSignIn (in string Username, in string Password, in string IPAddress);
 
