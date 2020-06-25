@@ -14,14 +14,18 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
 public class PlayerClient {
 
     static GameServer gameServerImpl;
+    private static GameServer serverAsia;
+    private static GameServer serverAmerica;
+    private static GameServer serverEurope;
+
+
+
 
     private static BufferedReader reader = new BufferedReader((new InputStreamReader(System.in)));
     private static int client_IP_Address = 0;
@@ -42,11 +46,13 @@ public class PlayerClient {
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
 
             // resolve the Object Reference in Naming
-            String name = "Hello";
-            gameServerImpl = GameServerHelper.narrow(ncRef.resolve_str(name));
-            System.out.println("Obtained a handle on server object: " + gameServerImpl);
-            System.out.println(gameServerImpl.playerSignOut("test","121212"));
-            //gameServerImpl.shutdown();
+            serverAsia = GameServerHelper.narrow(ncRef.resolve_str(Constants.SERVER_NAME_ASIA));
+            serverAmerica = GameServerHelper.narrow(ncRef.resolve_str(Constants.SERVER_NAME_AMERICA));
+            serverEurope = GameServerHelper.narrow(ncRef.resolve_str(Constants.SERVER_NAME_EUROPE));
+
+           // System.out.println("Obtained a handle on server object: " + gameServerImpl);
+           // System.out.println(gameServerImpl.playerSignOut("test","121212"));
+
         } catch (Exception e) {
             System.out.println("ERROR : " + e);
             e.printStackTrace(System.out);
@@ -60,7 +66,9 @@ public class PlayerClient {
     public static void main(String[] args) throws Exception{
         
         // setup CORBA
-        setupCORBA(args);
+        if (!setupCORBA(args)) {
+            System.out.println("Server setup failed, please restart session");
+        }
 
         boolean exit = false;
 
@@ -159,7 +167,7 @@ public class PlayerClient {
                         System.out.print("Please enter New IP: ");
                         new_IP_Address = getValidIntegerInput();
                     }
-                    getServerFromIP(new_IP_Address);
+                    //getServerFromIP(new_IP_Address);
 
                     System.out.println();
                     setupLogging(userNameTransferAcc);
@@ -288,32 +296,24 @@ public class PlayerClient {
             case 132:
                 client_server_name = Constants.SERVER_NAME_AMERICA;
                 server_port_number = Constants.SERVER_PORT_AMERICA;
+                gameServerImpl = serverAsia;
                 break;
 
             case 93:
                 client_server_name = Constants.SERVER_NAME_EUROPE;
                 server_port_number = Constants.SERVER_PORT_EUROPE;
+                gameServerImpl = serverEurope;
                 break;
 
             case 182:
                 client_server_name = Constants.SERVER_NAME_ASIA;
                 server_port_number = Constants.SERVER_PORT_ASIA;
+                gameServerImpl = serverAsia;
                 break;
             default:
                 System.out.println("Error: Invalid server IP");
 
 
-        }
-
-        try {
-            System.out.println("***** Verifying info from server. Please wait. *****");
-            Registry registry = LocateRegistry.getRegistry(server_port_number);
-
-            //TODO: server
-            //gameServerImpl = (DPSS_GameServerInterface) registry.lookup(client_server_name);
-
-        }catch (Exception e){
-            System.out.println( e.getLocalizedMessage());
         }
     }
 

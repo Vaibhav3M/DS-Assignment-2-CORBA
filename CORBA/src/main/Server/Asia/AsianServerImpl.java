@@ -1,9 +1,9 @@
-package main.Server;
+package main.Server.Asia;
 
 import DPSS_CORBA.GameServerPOA;
 import org.omg.CORBA.ORB;
 
-public class GameServerImpl extends GameServerPOA {
+public class AsianServerImpl extends GameServerPOA {
 
     private ORB orb;
     public void setORB(ORB orb_val) { orb = orb_val;

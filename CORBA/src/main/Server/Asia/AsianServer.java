@@ -1,7 +1,8 @@
-package main.Server;
+package main.Server.Asia;
 
 import DPSS_CORBA.GameServer;
 import DPSS_CORBA.GameServerHelper;
+import main.Constants.Constants;
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContextExt;
@@ -19,11 +20,11 @@ public class AsianServer {
             POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
             rootpoa.the_POAManager().activate();
             // create servant and register it with the ORB
-            GameServerImpl gameServerImpl = new GameServerImpl();
-            gameServerImpl.setORB(orb);
+            AsianServerImpl asianServerImpl = new AsianServerImpl();
+            asianServerImpl.setORB(orb);
 
             // get object reference from the servant
-            org.omg.CORBA.Object ref = rootpoa.servant_to_reference(gameServerImpl);
+            org.omg.CORBA.Object ref = rootpoa.servant_to_reference(asianServerImpl);
 
             GameServer href = GameServerHelper.narrow(ref);
             // get the root naming context
@@ -33,16 +34,16 @@ public class AsianServer {
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
 
             // bind the Object Reference in Naming
-            String name = "Hello";
-            NameComponent path[] = ncRef.to_name(name);
+            NameComponent path[] = ncRef.to_name(Constants.SERVER_NAME_ASIA);
             ncRef.rebind(path, href);
             System.out.println("AsianServer ready and waiting ...");
+
             // wait for invocations from clients
             orb.run();
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
             e.printStackTrace(System.out);
         }
-        System.out.println("HelloServer Exiting ...");
+        System.out.println("AsianServer Exiting ...");
     }
 }
