@@ -275,8 +275,8 @@ public class AsianServerImpl extends GameServerPOA {
     }
 
     private void addDummyData() {
-        addDummyDataHelper(new Player("Test", "Test", 21, "Test_Asia", "test123", String.valueOf(Constants.SERVER_IP_AMERICA), false));
-        addDummyDataHelper(new Player("Yin", "Li", 21, "YinLi2", "yinli2", String.valueOf(Constants.SERVER_IP_AMERICA), true));
+        addDummyDataHelper(new Player("Test", "Test", 21, "Test_Asia", "test123", String.valueOf(Constants.SERVER_IP_ASIA), false));
+        addDummyDataHelper(new Player("Yin", "Li", 21, "YinLi2", "yinli2", String.valueOf(Constants.SERVER_IP_ASIA), true));
     }
 
     private void addDummyDataHelper(Player player){

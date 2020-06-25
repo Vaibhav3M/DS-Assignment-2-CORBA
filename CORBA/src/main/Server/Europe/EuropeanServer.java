@@ -38,10 +38,10 @@ public class EuropeanServer {
 
         try {
 
-            dataSocket = new DatagramSocket(Constants.SERVER_PORT_ASIA);
+            dataSocket = new DatagramSocket(Constants.SERVER_PORT_EUROPE);
             byte[] buffer = new byte[1000];
             LOGGER.info( "Server started..!!!");
-            System.out.println(Constants.SERVER_NAME_ASIA + " started at port " + Constants.SERVER_PORT_ASIA);
+
             while (true) {
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 dataSocket.receive(request);
@@ -136,7 +136,7 @@ public class EuropeanServer {
         File files = new File(Constants.SERVER_LOG_DIRECTORY);
         if (!files.exists())
             files.mkdirs();
-        files = new File(Constants.SERVER_LOG_DIRECTORY+"ASIA_Server.log");
+        files = new File(Constants.SERVER_LOG_DIRECTORY+"EUROPE_Server.log");
         if(!files.exists())
             files.createNewFile();
         fileHandler = CustomLogger.setup(files.getAbsolutePath());

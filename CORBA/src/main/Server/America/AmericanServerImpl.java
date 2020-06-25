@@ -178,44 +178,45 @@ public class AmericanServerImpl extends GameServerPOA {
             return "Username or password incorrect.";
         }
 
-        String response = "AS: ";
-        int onlineCount = 0;
-        int offlineCount = 0;
-
-        try {
-            lock.lock();
-            for (char key : playersTable.keySet()) {
-                for (Player p : playersTable.get(key)) {
-                    if (p.isSignedIn()) onlineCount++;
-                    else offlineCount++;
+            String response = "NA: ";
+            int onlineCount = 0;
+            int offlineCount = 0;
+            try {
+                lock.lock();
+                for (char key : playersTable.keySet()) {
+                    for (Player p : playersTable.get(key)) {
+                        if (p.isSignedIn()) onlineCount++;
+                        else offlineCount++;
+                    }
                 }
+            } finally {
+                lock.unlock();
             }
-        } finally {
-            lock.unlock();
+
+            String response_Asia = "";
+            String response_Europe = "";
+
+            //Send UDP requests to other servers
+            if (checkOtherServers) {
+                response_Asia = getPlayerStatusUDP(Constants.SERVER_PORT_ASIA);
+                response_Europe = getPlayerStatusUDP(Constants.SERVER_PORT_EUROPE);
+            }
+
+            //append the results
+            response = response + onlineCount + " online, " + offlineCount + " offline. " + response_Asia + response_Europe;
+            return response;
         }
-
-        String response_America = "";
-        String response_Europe = "";
-
-        //Send UDP requests to other servers
-        if (checkOtherServers) {
-            response_America = getPlayerStatusUDP(Constants.SERVER_PORT_AMERICA);
-            response_Europe = getPlayerStatusUDP(Constants.SERVER_PORT_EUROPE);
-        }
-
-        //append the results
-        response = response + onlineCount + " online, " + offlineCount + " offline. " + response_America + response_Europe;
-        return response;
-    }
 
     @Override
     public String transferAccount(String Username, String Password, String OldIPAddress, String NewIPAddress) {
-        return null;
+
+        return "error";
     }
 
     @Override
     public String suspendAccount(String AdminUsername, String AdminPassword, String AdminIP, String UsernameToSuspend) {
-        return null;
+
+        return "suspending";
     }
 
     /**
@@ -235,10 +236,10 @@ public class AmericanServerImpl extends GameServerPOA {
         Thread UDPThread = new Thread(() ->
         {
             try {
-                response[0] = sendReceiveUDPMessage.getUDPResponse("playerstatus", serverPort, Constants.SERVER_PORT_ASIA);
+                response[0] = sendReceiveUDPMessage.getUDPResponse("playerstatus", serverPort, Constants.SERVER_PORT_AMERICA);
 
             } catch (Exception e) {
-                System.out.println("Exception at getplayerstatus" + e.getLocalizedMessage());
+                System.out.println("Exception at getPlayerStatus: " + e.getLocalizedMessage());
             }
 
         });
@@ -249,13 +250,12 @@ public class AmericanServerImpl extends GameServerPOA {
         try {
             UDPThread.join();
         } catch (Exception e) {
-            System.out.println("Exception at getplayerstatus" + e.getLocalizedMessage());
+            System.out.println("At getPlayerStatus:" + e.getLocalizedMessage());
         }
         LOGGER.info("Received UDP response from " + serverPort + " - " + response[0]);
         return response[0];
 
     }
-
     /**
      * checkUserName - to check if username exists on other servers using UDP
      *
@@ -265,15 +265,15 @@ public class AmericanServerImpl extends GameServerPOA {
     private boolean checkUserName(String userName) {
         SendReceiveUDPMessage sendReceiveUDPMessage = new SendReceiveUDPMessage();
 
-        String check_american = sendReceiveUDPMessage.getUDPResponse("UserName=" + userName, Constants.SERVER_PORT_AMERICA, Constants.SERVER_PORT_ASIA);
-        String check_europe = sendReceiveUDPMessage.getUDPResponse("UserName=" + userName, Constants.SERVER_PORT_EUROPE, Constants.SERVER_PORT_ASIA);
+        String check_asia = sendReceiveUDPMessage.getUDPResponse("UserName=" + userName, Constants.SERVER_PORT_ASIA, Constants.SERVER_PORT_AMERICA);
+        String check_europe = sendReceiveUDPMessage.getUDPResponse("UserName=" + userName, Constants.SERVER_PORT_EUROPE, Constants.SERVER_PORT_AMERICA);
 
-        return !check_american.equalsIgnoreCase("User not found") || !check_europe.equalsIgnoreCase("User not found");
+        return !check_asia.equalsIgnoreCase("User not found") || !check_europe.equalsIgnoreCase("User not found");
     }
 
     private void addDummyData() {
-        addDummyDataHelper(new Player("Test", "Test", 21, "Test_Asia", "test123", String.valueOf(Constants.SERVER_IP_AMERICA), false));
-        addDummyDataHelper(new Player("Yin", "Li", 21, "YinLi2", "yinli2", String.valueOf(Constants.SERVER_IP_AMERICA), true));
+        addDummyDataHelper(new Player("Test", "Test", 21, "Test_America", "test123", String.valueOf(Constants.SERVER_IP_AMERICA), false));
+        addDummyDataHelper(new Player("Alex", "Alex", 21, "Alex1212", "alex123", String.valueOf(Constants.SERVER_IP_AMERICA), true));
     }
 
     private void addDummyDataHelper(Player player){

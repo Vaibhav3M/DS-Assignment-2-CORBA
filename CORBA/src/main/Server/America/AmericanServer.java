@@ -38,10 +38,10 @@ public class AmericanServer {
 
         try {
 
-            dataSocket = new DatagramSocket(Constants.SERVER_PORT_ASIA);
+            dataSocket = new DatagramSocket(Constants.SERVER_PORT_AMERICA);
             byte[] buffer = new byte[1000];
             LOGGER.info( "Server started..!!!");
-            System.out.println(Constants.SERVER_NAME_ASIA + " started at port " + Constants.SERVER_PORT_ASIA);
+
             while (true) {
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 dataSocket.receive(request);
@@ -77,7 +77,7 @@ public class AmericanServer {
 
     public static void main(String args[]) {
 
-        AmericanServerImpl serverImplementation = new AmericanServerImpl(LOGGER);
+        AmericanServerImpl americanServer = new AmericanServerImpl(LOGGER);
 
         Thread server_america = new Thread(()->
         {
@@ -85,7 +85,7 @@ public class AmericanServer {
                 //setup logger
                 setupLogging();
                 //UDP setup
-                recieve(serverImplementation);
+                recieve(americanServer);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -104,10 +104,10 @@ public class AmericanServer {
             rootpoa.the_POAManager().activate();
 
             // create servant and register it with the ORB
-            serverImplementation.setORB(orb);
+            americanServer.setORB(orb);
 
             // get object reference from the servant
-            org.omg.CORBA.Object ref = rootpoa.servant_to_reference(serverImplementation);
+            org.omg.CORBA.Object ref = rootpoa.servant_to_reference(americanServer);
 
             GameServer href = GameServerHelper.narrow(ref);
             // get the root naming context
@@ -137,7 +137,7 @@ public class AmericanServer {
         File files = new File(Constants.SERVER_LOG_DIRECTORY);
         if (!files.exists())
             files.mkdirs();
-        files = new File(Constants.SERVER_LOG_DIRECTORY+"ASIA_Server.log");
+        files = new File(Constants.SERVER_LOG_DIRECTORY+"AMERICA_Server.log");
         if(!files.exists())
             files.createNewFile();
         fileHandler = CustomLogger.setup(files.getAbsolutePath());

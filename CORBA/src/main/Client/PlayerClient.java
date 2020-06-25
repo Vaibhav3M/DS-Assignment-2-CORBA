@@ -296,7 +296,7 @@ public class PlayerClient {
             case 132:
                 client_server_name = Constants.SERVER_NAME_AMERICA;
                 server_port_number = Constants.SERVER_PORT_AMERICA;
-                gameServerImpl = serverAsia;
+                gameServerImpl = serverAmerica;
                 break;
 
             case 93:
