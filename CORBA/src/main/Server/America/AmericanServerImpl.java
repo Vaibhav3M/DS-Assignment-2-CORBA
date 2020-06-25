@@ -216,7 +216,38 @@ public class AmericanServerImpl extends GameServerPOA {
     @Override
     public String suspendAccount(String AdminUsername, String AdminPassword, String AdminIP, String UsernameToSuspend) {
 
-        return "suspending";
+        LOGGER.info("Received request - Suspend Player - " + "Username=" + UsernameToSuspend);
+
+        char playerKey = UsernameToSuspend.charAt(0);
+
+        try {
+            // lock while performing operations
+            lock.lock();
+            if (playersTable.containsKey(playerKey)) {
+
+                ArrayList<Player> playerList = playersTable.get(playerKey);
+
+                for (int i = 0; i < playerList.size(); i++) {
+                    Player currPlayer = playerList.get(i);
+                    if (currPlayer.getUserName().equalsIgnoreCase(UsernameToSuspend)) {
+
+                        playerList.remove(i);
+                        playersTable.put(playerKey, playerList);
+
+                        LOGGER.info("Player Suspended - " + "Username=" + UsernameToSuspend);
+                        return currPlayer.getUserName() + " has been suspended. ";
+                    }
+                }
+            } else {
+
+                LOGGER.info("Player not found - " + "Username=" + UsernameToSuspend);
+                return UsernameToSuspend + " not found";
+            }
+        } finally {
+            lock.unlock();
+        }
+
+        return UsernameToSuspend + " not found";
     }
 
     /**
