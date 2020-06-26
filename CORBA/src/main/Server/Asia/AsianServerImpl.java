@@ -237,7 +237,7 @@ public class AsianServerImpl extends GameServerPOA {
 
                         String response = generateUDPResponse(newServerPort,"transferPlayer:" + playerInfo);
 
-                        if (response.split(" ")[1].equalsIgnoreCase("Successful")) {
+                        if (response.equalsIgnoreCase("Successful")) {
 
                             playerList.remove(i);
                             playersTable.put(playerKey, playerList);
