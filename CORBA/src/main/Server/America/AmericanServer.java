@@ -54,7 +54,14 @@ public class AmericanServer {
 
                 if (requestMessage.split("=")[0].equalsIgnoreCase("username")) {
                     responseString = serverImpl.playerSignOut(requestMessage.split("=")[1],request_IP);
-                } else {
+                }else if (requestMessage.equalsIgnoreCase("transferPlayer")){
+
+                    String playerString = new String(request.getData(),0,request.getLength()).split(":")[2];
+                    String[] playerArray = playerString.split(",");
+
+                    responseString = serverImpl.createPlayerAccount(playerArray[0],playerArray[1],Integer.parseInt(playerArray[2]),playerArray[3],playerArray[4],String.valueOf(Constants.SERVER_IP_ASIA));
+                    System.out.println(responseString);
+                }else {
                     responseString = serverImpl.getPlayerStatus("Admin", "Admin", String.valueOf(request.getPort()), false);
                 }
 

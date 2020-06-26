@@ -35,16 +35,21 @@ public class EuropeanServerImpl extends GameServerPOA {
 
     @Override
     public String createPlayerAccount(String FirstName, String LastName, float Age, String Username, String Password, String IPAddress) {
+
+        boolean isFromServerIP = (Integer.parseInt(IPAddress) == Constants.SERVER_IP_EUROPE);
+
         //create player object
-        Player player = new Player(FirstName, LastName, Math.round(Age) , Username, Password, IPAddress, false);
+        Player player = new Player(FirstName, LastName, Math.round(Age) , Username, Password, String.valueOf(Constants.SERVER_IP_EUROPE), false);
 
         LOGGER.info("Received RMI request - Create Player - " + player.toString());
 
-        //check if username exists
-        if (checkUserName(player.getUserName())) {
+        if (isFromServerIP) {
+            //check if username exists
+            if (checkUserName(player.getUserName())) {
 
-            LOGGER.info("Username=" + player.getUserName() + " already existed");
-            return "Username already exists";
+                LOGGER.info("Username=" + player.getUserName() + " already existed");
+                return "Username already exists";
+            }
         }
 
         char playerKey = player.getUserName().charAt(0);
@@ -198,8 +203,8 @@ public class EuropeanServerImpl extends GameServerPOA {
 
         //Send UDP requests to other servers
         if (checkOtherServers) {
-            response_Asia = getPlayerStatusUDP(Constants.SERVER_PORT_ASIA);
-            response_America = getPlayerStatusUDP(Constants.SERVER_PORT_AMERICA);
+            response_Asia = generateUDPResponse(Constants.SERVER_PORT_ASIA,"playerstatus");
+            response_America = generateUDPResponse(Constants.SERVER_PORT_AMERICA,"playerstatus");
         }
 
         //append the results
@@ -209,7 +214,53 @@ public class EuropeanServerImpl extends GameServerPOA {
 
     @Override
     public String transferAccount(String Username, String Password, String OldIPAddress, String NewIPAddress) {
-        return null;
+
+
+        LOGGER.info("Received request - Transfer Player - " + "Username= " + Username + " OldIP: " + OldIPAddress + " NewIP: " +  NewIPAddress);
+
+        char playerKey = Username.charAt(0);
+
+        try {
+            // lock while performing operations
+            lock.lock();
+            if (playersTable.containsKey(playerKey)) {
+
+                ArrayList<Player> playerList = playersTable.get(playerKey);
+
+                for (int i = 0; i < playerList.size(); i++) {
+                    Player currPlayer = playerList.get(i);
+                    if (currPlayer.getUserName().equalsIgnoreCase(Username)) {
+
+                        int newServerPort = Constants.getServerPortFromIP(Integer.parseInt(NewIPAddress));
+                        String playerInfo = currPlayer.getFirstName() + "," + currPlayer.getLastName() + "," + currPlayer.getAge() + "," + currPlayer.getUserName() + "," + currPlayer.getPassword();
+
+                        String response = generateUDPResponse(newServerPort,"transferPlayer:" + playerInfo);
+
+                        if (response.split(" ")[1].equalsIgnoreCase("Successful")) {
+
+                            playerList.remove(i);
+                            playersTable.put(playerKey, playerList);
+
+                            LOGGER.info("Player "+ "Username=" + Username + " has been transferred to  - " + NewIPAddress);
+
+                            return currPlayer.getUserName() + " has been transferred to - " + NewIPAddress;
+                        }
+                        else{
+
+                            return currPlayer.getUserName() + " cannot be transferred.";
+                        }
+
+                    }
+                }
+            } else {
+                LOGGER.info("Player not found - " + "Username=" + Username);
+                return Username + " not found";
+            }
+        } finally {
+            lock.unlock();
+        }
+
+        return Username + " not found";
     }
 
     @Override
@@ -255,7 +306,7 @@ public class EuropeanServerImpl extends GameServerPOA {
      * @param serverPort - port to which UDP request is sent
      * @return the UDP response
      */
-    private String getPlayerStatusUDP(int serverPort) {
+    private String generateUDPResponse(int serverPort, String action) {
 
         LOGGER.info("Created UDP request - Get player status from port " + serverPort);
         String[] response = {"No response from " + serverPort};
@@ -266,7 +317,7 @@ public class EuropeanServerImpl extends GameServerPOA {
         Thread UDPThread = new Thread(() ->
         {
             try {
-                response[0] = sendReceiveUDPMessage.getUDPResponse("playerstatus", serverPort, Constants.SERVER_PORT_EUROPE);
+                response[0] = sendReceiveUDPMessage.getUDPResponse(action, serverPort, Constants.SERVER_PORT_EUROPE);
 
             } catch (Exception e) {
                 System.out.println("Exception at getPlayerStatus: " + e.getLocalizedMessage());
@@ -280,9 +331,8 @@ public class EuropeanServerImpl extends GameServerPOA {
         try {
             UDPThread.join();
         } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
+            System.out.println("At getPlayerStatus:" + e.getLocalizedMessage());
         }
-
         LOGGER.info("Received UDP response from " + serverPort + " - " + response[0]);
         return response[0];
 
