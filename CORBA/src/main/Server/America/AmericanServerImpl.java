@@ -217,6 +217,8 @@ public class AmericanServerImpl extends GameServerPOA {
 
         LOGGER.info("Received request - Transfer Player - " + "Username= " + Username + " OldIP: " + OldIPAddress + " NewIP: " +  NewIPAddress);
 
+        if(OldIPAddress.equalsIgnoreCase(NewIPAddress)) return "New IP and Old IP must be different";
+
         char playerKey = Username.charAt(0);
 
         try {
