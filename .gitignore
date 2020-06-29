@@ -45,9 +45,3 @@ CORBA/DPSS-CORBA.iml
 .classpath
 .project
 
-
-# remove before committing
-
-out/
-orb.db/
-src/Logs/
