@@ -1,0 +1,58 @@
+29/06/2020 03:09:09.382 - [INFO] - Server started..!!!
+
+29/06/2020 03:26:00.154 - [INFO] - Received UDP request message: 5892:UserName=test123
+
+29/06/2020 03:26:00.154 - [INFO] - Player not found - Username=test123
+
+29/06/2020 03:26:00.154 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:26:56.662 - [INFO] - Received UDP request message: 5892:UserName=tester1
+
+29/06/2020 03:26:56.662 - [INFO] - Player not found - Username=tester1
+
+29/06/2020 03:26:56.662 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:28:04.253 - [INFO] - Received   request - Create Player - Player{firstName='test', lastName='test', age=23, userName='tester2', password='test123', IPAddress='182', signedIn=false}
+
+29/06/2020 03:28:04.256 - [INFO] - Player Created successfully - Player{firstName='test', lastName='test', age=23, userName='tester2', password='test123', IPAddress='182', signedIn=false}
+
+29/06/2020 03:28:05.778 - [INFO] - Received   request - Create Player - Player{firstName='test', lastName='test', age=23, userName='tester2', password='test123', IPAddress='182', signedIn=false}
+
+29/06/2020 03:28:05.779 - [INFO] - Username=tester2 already existed
+
+29/06/2020 03:34:49.857 - [INFO] - Received UDP request message: 2421:UserName=tester3
+
+29/06/2020 03:34:49.857 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:37:38.928 - [INFO] - Received   request - SignIn Player - Username=tester2
+
+29/06/2020 03:37:38.928 - [INFO] - Player SignedIn - Username=tester2
+
+29/06/2020 03:44:39.879 - [INFO] - Received UDP request message: 5892:UserName=tester2
+
+29/06/2020 03:44:39.879 - [INFO] - Player SignedOut - Username=tester2
+
+29/06/2020 03:44:39.879 - [INFO] - Sent UDP response message: tester2 has logged out.
+
+29/06/2020 04:02:55.612 - [INFO] - Received UDP request message: 2421:playerstatus
+
+29/06/2020 04:02:55.612 - [INFO] - Sent UDP response message: AS: 2 online, 1 offline. 
+
+29/06/2020 04:03:14.374 - [INFO] - Received UDP request message: 5892:playerstatus
+
+29/06/2020 04:03:14.374 - [INFO] - Sent UDP response message: AS: 2 online, 1 offline. 
+
+29/06/2020 04:04:01.119 - [INFO] - Received UDP request message: 2421:playerstatus
+
+29/06/2020 04:04:01.119 - [INFO] - Sent UDP response message: AS: 2 online, 1 offline. 
+
+29/06/2020 04:05:34.943 - [INFO] - Received request - Transfer Player - Username= tester2 OldIP: 182 NewIP: 132
+
+29/06/2020 04:05:34.943 - [INFO] - Created UDP request - Get player status from port 2421
+
+29/06/2020 04:05:34.948 - [INFO] - Received UDP response from 2421 - Successful
+
+29/06/2020 04:05:34.948 - [INFO] - Player Username=tester2 has been transferred to  - 132
+
+29/06/2020 04:05:36.201 - [INFO] - Received request - Suspend Player - Username=tester2
+

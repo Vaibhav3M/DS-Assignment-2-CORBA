@@ -1,0 +1,50 @@
+29/06/2020 03:09:13.909 - [INFO] - Server started..!!!
+
+29/06/2020 03:26:00.149 - [INFO] - Received   request - Create Player - Player{firstName='test', lastName='test', age=23, userName='test123', password='test123', IPAddress='93', signedIn=false}
+
+29/06/2020 03:26:00.155 - [INFO] - Player Created successfully - Player{firstName='test', lastName='test', age=23, userName='test123', password='test123', IPAddress='93', signedIn=false}
+
+29/06/2020 03:26:56.660 - [INFO] - Received   request - Create Player - Player{firstName='test', lastName='test', age=23, userName='tester1', password='test123', IPAddress='93', signedIn=false}
+
+29/06/2020 03:26:56.662 - [INFO] - Player Created successfully - Player{firstName='test', lastName='test', age=23, userName='tester1', password='test123', IPAddress='93', signedIn=false}
+
+29/06/2020 03:28:04.255 - [INFO] - Received UDP request message: 8091:UserName=tester2
+
+29/06/2020 03:28:04.255 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:28:05.779 - [INFO] - Received UDP request message: 8091:UserName=tester2
+
+29/06/2020 03:28:05.779 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:34:49.858 - [INFO] - Received UDP request message: 2421:UserName=tester3
+
+29/06/2020 03:34:49.858 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:37:22.719 - [INFO] - Received   request - SignIn Player - Username=tester2
+
+29/06/2020 03:44:39.878 - [INFO] - Received   request - Create Player - Player{firstName='test', lastName='test', age=23, userName='tester2', password='test123', IPAddress='93', signedIn=false}
+
+29/06/2020 03:44:39.879 - [INFO] - Username=tester2 already existed
+
+29/06/2020 04:02:55.613 - [INFO] - Received UDP request message: 2421:playerstatus
+
+29/06/2020 04:02:55.613 - [INFO] - Sent UDP response message: EU: 1 online, 3 offline. 
+
+29/06/2020 04:03:14.371 - [INFO] - Created UDP request - Get player status from port 8091
+
+29/06/2020 04:03:14.376 - [INFO] - Received UDP response from 8091 - AS: 2 online, 1 offline. 
+
+29/06/2020 04:03:14.376 - [INFO] - Created UDP request - Get player status from port 2421
+
+29/06/2020 04:03:14.377 - [INFO] - Received UDP response from 2421 - NA: 1 online, 2 offline. 
+
+29/06/2020 04:03:27.833 - [INFO] - Received request - Suspend Player - Username=tester3
+
+29/06/2020 04:04:01.120 - [INFO] - Received UDP request message: 2421:playerstatus
+
+29/06/2020 04:04:01.120 - [INFO] - Sent UDP response message: EU: 1 online, 3 offline. 
+
+29/06/2020 04:04:42.369 - [INFO] - Received request - Transfer Player - Username= tester2 OldIP: 93 NewIP: 132
+
+29/06/2020 04:05:17.724 - [INFO] - Received request - Suspend Player - Username=tester2
+

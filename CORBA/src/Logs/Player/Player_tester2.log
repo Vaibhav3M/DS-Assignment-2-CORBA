@@ -1,0 +1,28 @@
+29/06/2020 03:28:04.272 - [INFO] - tester2 request to create new account on AsiaGameServer
+
+29/06/2020 03:28:04.272 - [INFO] - Successful
+
+29/06/2020 03:28:05.795 - [INFO] - tester2 request to create new account on AsiaGameServer
+
+29/06/2020 03:28:05.796 - [INFO] - UserName already exists
+
+29/06/2020 03:37:22.718 - [INFO] - tester2 attempted to sign in on EuropeGameServer
+
+29/06/2020 03:37:22.720 - [INFO] - tester2 not found
+
+29/06/2020 03:37:38.926 - [INFO] - tester2 attempted to sign in on AsiaGameServer
+
+29/06/2020 03:37:38.929 - [INFO] - tester2 has logged in.
+
+29/06/2020 03:44:39.881 - [INFO] - tester2 request to create new account on EuropeGameServer
+
+29/06/2020 03:44:39.881 - [INFO] - Username already exists
+
+29/06/2020 04:04:42.366 - [INFO] - tester2 attempted to transfer account from Old IP: 93 to New IP: 132
+
+29/06/2020 04:04:42.370 - [INFO] - tester2 not found
+
+29/06/2020 04:05:34.942 - [INFO] - tester2 attempted to transfer account from Old IP: 182 to New IP: 132
+
+29/06/2020 04:05:34.949 - [INFO] - tester2 has been transferred to - 132
+

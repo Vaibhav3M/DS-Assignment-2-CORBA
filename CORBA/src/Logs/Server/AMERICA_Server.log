@@ -1,0 +1,70 @@
+29/06/2020 03:09:11.499 - [INFO] - Server started..!!!
+
+29/06/2020 03:26:00.152 - [INFO] - Received UDP request message: 5892:UserName=test123
+
+29/06/2020 03:26:00.153 - [INFO] - Player not found - Username=test123
+
+29/06/2020 03:26:00.153 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:26:56.661 - [INFO] - Received UDP request message: 5892:UserName=tester1
+
+29/06/2020 03:26:56.661 - [INFO] - Player not found - Username=tester1
+
+29/06/2020 03:26:56.661 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:28:04.254 - [INFO] - Received UDP request message: 8091:UserName=tester2
+
+29/06/2020 03:28:04.254 - [INFO] - Player not found - Username=tester2
+
+29/06/2020 03:28:04.254 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:28:05.778 - [INFO] - Received UDP request message: 8091:UserName=tester2
+
+29/06/2020 03:28:05.779 - [INFO] - Player not found - Username=tester2
+
+29/06/2020 03:28:05.779 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 03:34:49.855 - [INFO] - Received   request - Create Player - Player{firstName='test', lastName='test', age=24, userName='tester3', password='test123', IPAddress='132', signedIn=false}
+
+29/06/2020 03:34:49.858 - [INFO] - Player Created successfully - Player{firstName='test', lastName='test', age=24, userName='tester3', password='test123', IPAddress='132', signedIn=false}
+
+29/06/2020 03:44:39.878 - [INFO] - Received UDP request message: 5892:UserName=tester2
+
+29/06/2020 03:44:39.879 - [INFO] - Sent UDP response message: User not found
+
+29/06/2020 04:02:55.608 - [INFO] - Created UDP request - Get player status from port 8091
+
+29/06/2020 04:02:55.612 - [INFO] - Received UDP response from 8091 - AS: 2 online, 1 offline. 
+
+29/06/2020 04:02:55.612 - [INFO] - Created UDP request - Get player status from port 5892
+
+29/06/2020 04:02:55.613 - [INFO] - Received UDP response from 5892 - EU: 1 online, 3 offline. 
+
+29/06/2020 04:03:14.377 - [INFO] - Received UDP request message: 5892:playerstatus
+
+29/06/2020 04:03:14.377 - [INFO] - Sent UDP response message: NA: 1 online, 2 offline. 
+
+29/06/2020 04:03:43.245 - [INFO] - Received request - Suspend Player - Username=tester3
+
+29/06/2020 04:03:43.245 - [INFO] - Player Suspended - Username=tester3
+
+29/06/2020 04:03:53.533 - [INFO] - Received request - Suspend Player - Username=aewfdasf
+
+29/06/2020 04:03:53.533 - [INFO] - Player not found - Username=aewfdasf
+
+29/06/2020 04:04:01.118 - [INFO] - Created UDP request - Get player status from port 8091
+
+29/06/2020 04:04:01.119 - [INFO] - Received UDP response from 8091 - AS: 2 online, 1 offline. 
+
+29/06/2020 04:04:01.119 - [INFO] - Created UDP request - Get player status from port 5892
+
+29/06/2020 04:04:01.120 - [INFO] - Received UDP response from 5892 - EU: 1 online, 3 offline. 
+
+29/06/2020 04:05:34.946 - [INFO] - Received UDP request message: 8091:transferPlayer:test,test,23,tester2,test123
+
+29/06/2020 04:05:34.946 - [INFO] - Received RMI request - Create Player - Player{firstName='test', lastName='test', age=23, userName='tester2', password='test123', IPAddress='132', signedIn=false}
+
+29/06/2020 04:05:34.946 - [INFO] - Player Created successfully - Player{firstName='test', lastName='test', age=23, userName='tester2', password='test123', IPAddress='132', signedIn=false}
+
+29/06/2020 04:05:34.946 - [INFO] - Sent UDP response message: Successful
+

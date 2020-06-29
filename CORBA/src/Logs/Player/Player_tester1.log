@@ -1,0 +1,40 @@
+28/06/2020 04:14:41.880 - [INFO] - tester1 request to create new account on AmericaGameServer
+
+28/06/2020 04:14:41.880 - [INFO] - Successful
+
+28/06/2020 04:16:38.023 - [INFO] - tester1 attempted to sign in on AmericaGameServer
+
+28/06/2020 04:16:38.025 - [INFO] - tester1 has logged in.
+
+28/06/2020 04:17:51.789 - [INFO] - tester1 attempted to sign in on AmericaGameServer
+
+28/06/2020 04:17:51.791 - [INFO] - tester1 is already logged in.
+
+28/06/2020 04:18:38.609 - [INFO] - tester1 attempted to sign out of AmericaGameServer
+
+28/06/2020 04:18:38.611 - [INFO] - tester1 has logged out.
+
+28/06/2020 04:20:11.894 - [INFO] - tester1 attempted to transfer account from Old IP: 132 to New IP: 93
+
+28/06/2020 04:20:11.902 - [INFO] - tester1 has been transferred to - 93
+
+28/06/2020 04:22:06.118 - [INFO] - tester1 attempted to sign in on AmericaGameServer
+
+28/06/2020 04:22:06.120 - [INFO] - tester1 not found
+
+28/06/2020 04:22:26.715 - [INFO] - tester1 attempted to sign in on AmericaGameServer
+
+28/06/2020 04:22:26.716 - [INFO] - tester1 not found
+
+28/06/2020 04:22:59.264 - [INFO] - tester1 attempted to sign in on AsiaGameServer
+
+28/06/2020 04:22:59.266 - [INFO] - tester1 not found
+
+28/06/2020 04:23:12.641 - [INFO] - tester1 attempted to sign in on EuropeGameServer
+
+28/06/2020 04:23:12.647 - [INFO] - tester1 has logged in.
+
+29/06/2020 03:26:56.663 - [INFO] - tester1 request to create new account on EuropeGameServer
+
+29/06/2020 03:26:56.663 - [INFO] - Successful
+
