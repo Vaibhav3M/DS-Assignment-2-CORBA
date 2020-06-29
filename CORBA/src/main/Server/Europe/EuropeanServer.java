@@ -60,7 +60,7 @@ public class EuropeanServer {
                     String[] playerArray = playerString.split(",");
 
                     responseString = serverImpl.createPlayerAccount(playerArray[0],playerArray[1],Integer.parseInt(playerArray[2]),playerArray[3],playerArray[4],String.valueOf(Constants.SERVER_IP_AMERICA));
-                    System.out.println(responseString);
+
                 } else {
                     responseString = serverImpl.getPlayerStatus("Admin", "Admin", String.valueOf(request.getPort()), false);
                 }
@@ -102,10 +102,10 @@ public class EuropeanServer {
         server_europe.setName("thread_Europe_server");
         server_europe.start();
 
-
+        // create and initialize the ORB
+        ORB orb = ORB.init(args, null);
         try {
-            // create and initialize the ORB
-            ORB orb = ORB.init(args, null);
+
             // get reference to rootpoa & activate the POAManager
             POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
             rootpoa.the_POAManager().activate();
@@ -133,6 +133,7 @@ public class EuropeanServer {
          //   e.printStackTrace(System.out);
             System.out.println("Some issue here ");
         }
+        orb.shutdown(false);
         System.out.println("EuropeanServer Exiting ...");
     }
 

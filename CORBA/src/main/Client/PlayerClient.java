@@ -19,12 +19,11 @@ import java.util.logging.Logger;
 
 public class PlayerClient {
 
+    //game server objects
     static GameServer gameServerImpl;
     private static GameServer serverAsia;
     private static GameServer serverAmerica;
     private static GameServer serverEurope;
-
-
 
 
     private static BufferedReader reader = new BufferedReader((new InputStreamReader(System.in)));
@@ -34,7 +33,8 @@ public class PlayerClient {
     private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     static FileHandler fileHandler = null;
-    
+
+    //setup CORBA object and register
     private static boolean setupCORBA(String[] arguments){
         try {
 
@@ -50,8 +50,6 @@ public class PlayerClient {
             serverAmerica = GameServerHelper.narrow(ncRef.resolve_str(Constants.SERVER_NAME_AMERICA));
             serverEurope = GameServerHelper.narrow(ncRef.resolve_str(Constants.SERVER_NAME_EUROPE));
 
-           // System.out.println("Obtained a handle on server object: " + gameServerImpl);
-           // System.out.println(gameServerImpl.playerSignOut("test","121212"));
 
         } catch (Exception e) {
             System.out.println("ERROR : " + e);
@@ -284,7 +282,7 @@ public class PlayerClient {
     }
 
     /**
-     * getServerFromIP. - This method takes IP by user and gets RMI registry
+     * getServerFromIP. - This method takes IP by user and gets   registry
      *
      * @param client_IP_Address IP address entered by user
      */

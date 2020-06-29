@@ -41,7 +41,7 @@ public class EuropeanServerImpl extends GameServerPOA {
         //create player object
         Player player = new Player(FirstName, LastName, Math.round(Age) , Username, Password, String.valueOf(Constants.SERVER_IP_EUROPE), false);
 
-        LOGGER.info("Received RMI request - Create Player - " + player.toString());
+        LOGGER.info("Received   request - Create Player - " + player.toString());
 
         if (isFromServerIP) {
             //check if username exists
@@ -90,7 +90,7 @@ public class EuropeanServerImpl extends GameServerPOA {
 
     @Override
     public String playerSignIn(String Username, String Password, String IPAddress) {
-        LOGGER.info("Received RMI request - SignIn Player - " + "Username=" + Username);
+        LOGGER.info("Received   request - SignIn Player - " + "Username=" + Username);
 
         char playerKey = Username.charAt(0);
 
@@ -149,7 +149,7 @@ public class EuropeanServerImpl extends GameServerPOA {
                     if (currPlayer.getUserName().equalsIgnoreCase(Username)) {
 
                         if (isFromServerIP) {
-                            LOGGER.info("Received RMI request - SignOut Player - " + Username);
+                            LOGGER.info("Received   request - SignOut Player - " + Username);
 
                             if (!currPlayer.isSignedIn()) {
                                 LOGGER.info("Player is not SignedIn - " + "Username=" + Username);

@@ -41,7 +41,7 @@ public class AdminClient {
     private static GameServer serverAmerica;
     private static GameServer serverEurope;
 
-
+    //setup CORBA object and register
     private static boolean setupCORBA(String[] arguments){
         try {
 
@@ -74,7 +74,7 @@ public class AdminClient {
     {
         int userinput = 1;
 
-        System.out.println("Please select an option (1 or 2)");
+        System.out.println("Please select an option (1, 2, 3 or 4)");
         System.out.println("1. Login");
         System.out.println("2. Get players info");
         System.out.println("3. Suspend Player account");
@@ -87,7 +87,7 @@ public class AdminClient {
                 userinput = Integer.valueOf(reader.readLine().trim());
                 inputValid = true;
             }catch (Exception e){
-                System.out.println("Oops..! Invalid input. Please select 1 or 2 to perform required action");
+                System.out.println("Oops..! Invalid input. Please select 1, 2, 3, 4 to perform required action");
             }
         } while (!inputValid);
 
@@ -141,7 +141,7 @@ public class AdminClient {
                         }
                         getServerFromIP(client_IP_Address);
 
-                        if(adminUsername.equalsIgnoreCase("Admin") && adminUsername.equalsIgnoreCase("Admin")){
+                        if(adminUsername.equalsIgnoreCase("Admin") && adminPassword.equalsIgnoreCase("Admin")){
                             LOGGER.info("Admin logged in successfully at " + client_IP_Address);
                             System.out.println("Message: Log in successful");
                             System.out.println();
@@ -203,7 +203,7 @@ public class AdminClient {
     }
 
     /**
-     * getServerFromIP. - This method takes IP by user and gets RMI registry
+     * getServerFromIP. - This method takes IP by user and gets   registry
      *
      * @param client_IP_Address IP address entered by user
      */
