@@ -7,15 +7,18 @@ Github link : https://github.com/Vaibhav3M/DS-Assignment-2-CORBA/
 
 ## Build and Run
 
+All code is written in IntelliJ IDE, Java JDK version 8.
+
+CORBA is not supported after java 8.
+
 ### IntelliJ:
 
 -	Open the project in folder DPSS_CORBA
+- Add runtime params for all the below classes (-ORBInitialPort 1050 - ORBInitialHost)
 -	Run: AmericaGameServer, EuropeGameServer, AsiaGameServer.
 -	Run: PlayerClient (to launch a player window)
 -	Run:  AdminClient (to launch a Admin window)
 -	To run multiple clients change the configuration to “Allow parallel run”.
-
-
 
 
 ### From Command Line
@@ -51,8 +54,8 @@ java AdminClient -ORBInitialPort 1050 -ORBInitialHost localhost
 
 ## Concepts implemented
 
-### 1.	CORBA
-Remote Method Invocation has been used to invoke client requests on the servers based on user’s IP address.
+### 1.	CORBA using Java IDL
+CORBA is used to a design specification for an Object Request Broker (ORB). This ORB provides the mechanism required for distributed objects to communicate and invoke server methods.
 
 ### 2.	UDP
 For below communication between server UDP is used:
@@ -66,10 +69,12 @@ For below communication between server UDP is used:
 -	All UDP requests are sent on a new thread
 - All client requests are sent on a new thread
 
-### 4.	Locks and HashTable 
-- Player data on server are stored in a Hashtables. Hashtables are thread-safe and promote concurrency.
--	Lock (ReentrantLock) is used for proper synchronization to allow multiple users to perform operations for the same or different accounts at the same time. 
+### 4.	HashTables-DataStructure
+Player data on server are stored in a Hashtables. Hashtables are thread-safe and promote concurrency.
+
+### 5. Locks
+Lock (ReentrantLock) is used for proper synchronization to allow multiple users to perform operations for the same or different accounts at the same time.
 
 
-## Test screenshots are avilable in [Report](https://github.com/Vaibhav3M/Distributed-System-Assignment1/blob/master/Assignment1-Report.pdf)
+## Test screenshots are avilable in [Report](https://github.com/Vaibhav3M/DS-Assignment-2-CORBA/blob/master/Assignment2-Report.pdf)
 
